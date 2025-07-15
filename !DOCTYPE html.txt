@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pixel Tamagotchi</title>
+  <style>
+    body {
+      background: #222;
+      color: #fff;
+      font-family: monospace;
+      text-align: center;
+    }
+    .pet {
+      font-size: 24px;
+      margin: 20px;
+    }
+    .stats {
+      margin-bottom: 20px;
+    }
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>🐾 Pixel Tamagotchi</h1>
+  <div class="pet">
+    (ᵔᴥᵔ)  <!-- Simple pet face -->
+  </div>
+  <div class="stats">
+    Hunger: <span id="hunger">100</span><br>
+    Happiness: <span id="happiness">100</span><br>
+    Cleanliness: <span id="cleanliness">100</span>
+  </div>
+  <div class="actions">
+    <button onclick="feed()">🍎 Feed</button>
+    <button onclick="play()">🎾 Play</button>
+    <button onclick="clean()">🧼 Clean</button>
+  </div>
+
+  <script>
+    let hunger = 100;
+    let happiness = 100;
+    let cleanliness = 100;
+
+    function updateStats() {
+      document.getElementById('hunger').textContent = hunger;
+      document.getElementById('happiness').textContent = happiness;
+      document.getElementById('cleanliness').textContent = cleanliness;
+    }
+
+    function feed() {
+      hunger = Math.min(hunger + 20, 100);
+      updateStats();
+    }
+
+    function play() {
+      happiness = Math.min(happiness + 20, 100);
+      updateStats();
+    }
+
+    function clean() {
+      cleanliness = Math.min(cleanliness + 20, 100);
+      updateStats();
+    }
+
+    function decayStats() {
+      hunger = Math.max(hunger - 1, 0);
+      happiness = Math.max(happiness - 1, 0);
+      cleanliness = Math.max(cleanliness - 1, 0);
+      updateStats();
+    }
+
+    setInterval(decayStats, 2000); // stats decay every 2 seconds
+    updateStats();
+  </script>
+</body>
+</html>
